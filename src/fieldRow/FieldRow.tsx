@@ -11,8 +11,6 @@ type Props = {
 } & WithStyles<typeof styles>;
 
 const FieldRow: React.FC<Props> = ({ row, classes, yCoordinate }) => {
-  console.log(row);
-
   return (
     <div className={classes.row}>
       {row.map((cell: CellProps, index: number) => (

@@ -1,9 +1,10 @@
 import { ClickCellPayload } from "../cell/cellActions";
 import { CellProps } from "../fieldRow/types";
+import { ReturnHandleMapType } from "./types";
 
 export type InitialState = {
   started: boolean;
-  map: CellProps[][];
+  map: ReturnHandleMapType[];
   lost: boolean;
   lastClicked: ClickCellPayload | null;
 };
@@ -14,6 +15,11 @@ const initialState: InitialState = {
   lost: false,
   lastClicked: null,
 };
+
+const handleMap = (map: CellProps[][]): ReturnHandleMapType[] =>
+  map.map((item: CellProps[], index: number) => {
+    return { value: item, uniqueId: index };
+  });
 
 const parseMap = (payload: string) => {
   const parsedData = payload ? payload.split(/\n/g) : [];
@@ -30,7 +36,7 @@ const parseMap = (payload: string) => {
     });
   });
 
-  return map;
+  return handleMap(map);
 };
 
 export default function gamePlayReducer(state = initialState, action: any) {
@@ -49,14 +55,17 @@ export default function gamePlayReducer(state = initialState, action: any) {
 
     case "GAME_LOST": {
       const { x, y }: any = state.lastClicked;
-      console.log(state.lastClicked);
-
-      const newMap = state.map.map((row: CellProps[], yIndex) =>
-        row.map((cell: CellProps, xIndex) => {
-          return xIndex === x && yIndex === y
-            ? { value: "*", uniqueId: xIndex }
-            : { value: cell.value, uniqueId: xIndex };
-        })
+      const newMap: ReturnHandleMapType[] = state.map.map(
+        (row: ReturnHandleMapType, yIndex) => {
+          return {
+            value: row.value.map((cell: CellProps, xIndex) => {
+              return xIndex === x && yIndex === y
+                ? { value: "*", uniqueId: xIndex }
+                : { value: cell.value, uniqueId: xIndex };
+            }),
+            uniqueId: row.uniqueId,
+          };
+        }
       );
 
       return { ...state, map: newMap, lost: true };

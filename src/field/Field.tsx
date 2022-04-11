@@ -1,10 +1,10 @@
 import { Container, WithStyles } from "@material-ui/core";
 import React from "react";
 import FieldRow from "../fieldRow";
-import { CellProps } from "../fieldRow/types";
+import { ReturnHandleMapType } from "../gamePlay/types";
 import styles from "./styles";
 
-type Props = { map: CellProps[][] } & WithStyles<typeof styles>;
+type Props = { map: ReturnHandleMapType[] } & WithStyles<typeof styles>;
 
 const Field: React.FC<Props> = ({ map, classes }) => {
   if (!map) {
@@ -13,8 +13,8 @@ const Field: React.FC<Props> = ({ map, classes }) => {
 
   return (
     <Container className={classes.cont}>
-      {map.map((row: CellProps[], index: number) => (
-        <FieldRow row={row} yCoordinate={index} />
+      {map.map((row: ReturnHandleMapType, index: number) => (
+        <FieldRow key={row.uniqueId} row={row.value} yCoordinate={index} />
       ))}
     </Container>
   );
