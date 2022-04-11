@@ -1,6 +1,7 @@
-import { all, call, takeLatest } from "redux-saga/effects";
-import { getMap } from "./fieldService";
+import { all, call, put, takeLatest } from "redux-saga/effects";
+
 import { gameStarted } from "./fieldActions";
+import { getMap } from "./fieldService";
 
 function* updateMapSaga() {
   try {
@@ -12,8 +13,8 @@ function* updateMapSaga() {
 
 function* gameStartedSaga() {
   try {
-    yield call(gameStarted);
     yield call(getMap);
+    yield put(gameStarted());
   } catch (err) {
     console.log(err);
   }

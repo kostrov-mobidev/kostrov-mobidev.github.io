@@ -1,3 +1,6 @@
+import { getMap, initialGetMap, updateMap } from "../../../field/fieldActions";
+import { gameLost } from "../../../gamePlay/gamePlayAction";
+
 const NEW_GAME = "new: OK";
 const OPEN_OK = "open: OK";
 const LOSE = "open: You lose";
@@ -8,31 +11,19 @@ const isLost = (payload: string) => payload === LOSE;
 
 export const handleGameAction = (payload: any) => {
   if (isNewGame(payload)) {
-    return {
-      type: "INITIAL_GET_MAP",
-      payload,
-    };
+    return initialGetMap(payload);
   }
 
   if (isMap(payload)) {
-    return {
-      type: "UPDATE_MAP",
-      payload,
-    };
+    return updateMap(payload);
   }
 
   if (isOpen(payload)) {
-    return {
-      type: "GET_MAP",
-      payload,
-    };
+    return getMap(payload);
   }
 
   if (isLost(payload)) {
-    return {
-      type: "GAME_LOST",
-      payload,
-    };
+    return gameLost(payload);
   }
 
   return { type: "DEFAULT" };

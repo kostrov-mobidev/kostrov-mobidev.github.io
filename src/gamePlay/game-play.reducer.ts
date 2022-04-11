@@ -1,5 +1,3 @@
-import { GamePlayActionTypes } from "./types";
-
 export type InitialState = {
   started: boolean;
   map: string[][];
@@ -34,7 +32,7 @@ const parseMap = (payload: string) => {
 
 export default function gamePlayReducer(state = initialState, action: any) {
   switch (action.type) {
-    case "INITIAL_GET_MAP": {
+    case "GAME_START": {
       const map = parseMap(action.payload);
 
       return { ...state, map, started: true };
