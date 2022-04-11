@@ -1,8 +1,11 @@
+import { ClickCellPayload } from "../cell/cellActions";
+import { CellProps } from "../fieldRow/types";
+
 export type InitialState = {
   started: boolean;
-  map: string[][];
+  map: CellProps[][];
   lost: boolean;
-  lastClicked: { x: number; y: number } | null;
+  lastClicked: ClickCellPayload | null;
 };
 
 const initialState: InitialState = {
@@ -18,11 +21,11 @@ const parseMap = (payload: string) => {
 
   const map = parsedData.map((el: string) => {
     const cells = el.split("");
-    return cells.map((cell: string) => {
+    return cells.map((cell: string, index: number) => {
       if (!isNaN(+cell)) {
-        return +cell;
+        return { value: `${+cell}`, uniqueId: index };
       } else {
-        return cell === "*" ? "*" : "";
+        return { value: cell === "*" ? "*" : "", uniqueId: index };
       }
     });
   });
@@ -46,11 +49,16 @@ export default function gamePlayReducer(state = initialState, action: any) {
 
     case "GAME_LOST": {
       const { x, y }: any = state.lastClicked;
-      const newMap = state.map.map((row: string[], yIndex) =>
-        row.map((cell: string, xIndex) => {
-          return xIndex === x && yIndex === y ? "*" : cell;
+      console.log(state.lastClicked);
+
+      const newMap = state.map.map((row: CellProps[], yIndex) =>
+        row.map((cell: CellProps, xIndex) => {
+          return xIndex === x && yIndex === y
+            ? { value: "*", uniqueId: xIndex }
+            : { value: cell.value, uniqueId: xIndex };
         })
       );
+
       return { ...state, map: newMap, lost: true };
     }
 
@@ -59,8 +67,6 @@ export default function gamePlayReducer(state = initialState, action: any) {
     }
 
     case "SET_LAST_CLICKED": {
-      console.log("last clicked", action.payload);
-
       return { ...state, lastClicked: { ...action.payload } };
     }
 

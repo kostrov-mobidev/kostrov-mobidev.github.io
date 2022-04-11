@@ -4,9 +4,9 @@ import { startGame } from "./toolBarService";
 
 function* newGameSaga(action: any) {
   try {
-    yield call(startGame, action.level);
+    yield call(startGame, action.payload);
   } catch (err) {
-    // yield put(buildersPMsRequestFailed(err));
+    console.log(err);
   }
 }
 

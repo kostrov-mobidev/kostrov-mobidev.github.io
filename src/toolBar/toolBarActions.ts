@@ -1,6 +1,6 @@
 export const startGame = (level: number) => ({
   type: "NEW_GAME",
-  level,
+  payload: level,
 });
 
 export const resetGame = () => ({
