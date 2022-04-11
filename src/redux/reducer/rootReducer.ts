@@ -1,5 +1,5 @@
 import { combineReducers } from "redux";
 
-import GamePlayReducer from "../../gamePlay/game-play.reducer";
+import gamePlayReducer from "../../gamePlay/game-play.reducer";
 
-export default combineReducers({ GamePlayReducer });
+export default combineReducers({ gamePlayReducer });

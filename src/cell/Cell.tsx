@@ -1,14 +1,15 @@
 import { WithStyles } from "@material-ui/core";
 import React, { useState } from "react";
+import { ClickCellPayload } from "./cellActions";
 import styles from "./styles";
 
 type Props = {
   lost: boolean;
   cell: string;
-  clickCell: (payload: { x: number; y: number }) => void;
+  clickCell: (payload: ClickCellPayload) => void;
   yCoordinate: number;
   xCoordinate: number;
-  setLastClicked: (payload: { x: number; y: number }) => void;
+  setLastClicked: (payload: ClickCellPayload) => void;
 } & WithStyles<typeof styles>;
 
 const Cell: React.FC<Props> = ({

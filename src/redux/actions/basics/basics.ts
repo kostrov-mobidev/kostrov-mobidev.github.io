@@ -1,5 +1,3 @@
-import { getMap } from "../../../field/fieldActions";
-
 const NEW_GAME = "new: OK";
 const OPEN_OK = "open: OK";
 const LOSE = "open: You lose";
@@ -31,8 +29,6 @@ export const handleGameAction = (payload: any) => {
   }
 
   if (isLost(payload)) {
-    console.log("socket game lost");
-
     return {
       type: "GAME_LOST",
       payload,

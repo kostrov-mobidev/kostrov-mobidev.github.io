@@ -1,4 +1,13 @@
-const initialState = {
+import { GamePlayActionTypes } from "./types";
+
+export type InitialState = {
+  started: boolean;
+  map: string[][];
+  lost: boolean;
+  lastClicked: { x: number; y: number } | null;
+};
+
+const initialState: InitialState = {
   started: false,
   map: [],
   lost: false,
@@ -9,10 +18,10 @@ const parseMap = (payload: string) => {
   const parsedData = payload ? payload.split(/\n/g) : [];
   parsedData.shift();
 
-  const map = parsedData.map((el: any) => {
+  const map = parsedData.map((el: string) => {
     const cells = el.split("");
-    return cells.map((cell: any) => {
-      if (!isNaN(cell)) {
+    return cells.map((cell: string) => {
+      if (!isNaN(+cell)) {
         return +cell;
       } else {
         return cell === "*" ? "*" : "";
@@ -23,7 +32,7 @@ const parseMap = (payload: string) => {
   return map;
 };
 
-export default function GamePlayReducer(state = initialState, action: any) {
+export default function gamePlayReducer(state = initialState, action: any) {
   switch (action.type) {
     case "INITIAL_GET_MAP": {
       const map = parseMap(action.payload);
@@ -38,8 +47,6 @@ export default function GamePlayReducer(state = initialState, action: any) {
     }
 
     case "GAME_LOST": {
-      console.log("reducer game lost");
-
       const { x, y }: any = state.lastClicked;
       const newMap = state.map.map((row: string[], yIndex) =>
         row.map((cell: string, xIndex) => {

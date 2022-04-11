@@ -1,10 +1,15 @@
 import React from "react";
-import Cell from "../cell";
+import { WithStyles } from "@material-ui/core";
 
-const FieldRow = ({ row, classes, yCoordinate }: any) => {
+import Cell from "../cell";
+import styles from "./styles";
+
+type Props = { yCoordinate: number; row: string[] } & WithStyles<typeof styles>;
+
+const FieldRow: React.FC<Props> = ({ row, classes, yCoordinate }) => {
   return (
     <div className={classes.row}>
-      {row.map((cell: any, index: number) => (
+      {row.map((cell: string, index: number) => (
         <Cell cell={cell} yCoordinate={yCoordinate} xCoordinate={index} />
       ))}
     </div>

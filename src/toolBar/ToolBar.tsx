@@ -28,7 +28,7 @@ const ToolBar = ({
         <Typography>
           <span>Select Level</span>
           <LevelSelect
-            isStarted={state.GamePlayReducer.started}
+            isStarted={state.gamePlayReducer.started}
             handleLevelChange={handleLevelChange}
           />
         </Typography>
@@ -47,7 +47,7 @@ const ToolBar = ({
           />
         </ButtonGroup>
       </Toolbar>
-      <If condition={state.GamePlayReducer.lost}>
+      <If condition={state.gamePlayReducer.lost}>
         <div className={classes.lostMsg}>You Lost!</div>
       </If>
     </AppBar>

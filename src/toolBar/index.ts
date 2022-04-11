@@ -12,8 +12,8 @@ const mapDispatchToProps = {
 
 const mapStateToProps = (state: any) => ({
   state,
-  started: state.GamePlayReducer.started,
-  lost: state.GamePlayReducer.lost,
+  started: state.gamePlayReducer.started,
+  lost: state.gamePlayReducer.lost,
 });
 
 export default withStyles(styles)(

@@ -1,14 +1,13 @@
-import { all, call, put, takeLatest } from "redux-saga/effects";
+import { all, call, takeLatest } from "redux-saga/effects";
 
-import { setLastClicked } from "./cellActions";
 import { openCell } from "./cellService";
+import { clickCell } from "./cellActions";
 
-function* clickCellSaga(action: any) {
+function* clickCellSaga(action: ReturnType<typeof clickCell>) {
   try {
     yield call(openCell, action.payload);
-    //   put(setLastClicked(action.payload));
   } catch (err) {
-    // yield put(buildersPMsRequestFailed(err));
+    console.log(err);
   }
 }
 
