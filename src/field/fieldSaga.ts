@@ -2,6 +2,7 @@ import { all, call, put, takeLatest } from "redux-saga/effects";
 
 import { gameStarted } from "./fieldActions";
 import { getMap } from "./fieldService";
+import { GET_MAP, INITIAL_GET_MAP } from "./types";
 
 function* updateMapSaga() {
   try {
@@ -21,6 +22,6 @@ function* gameStartedSaga() {
 }
 
 export default all([
-  takeLatest<any>("GET_MAP", updateMapSaga),
-  takeLatest<any>("INITIAL_GET_MAP", gameStartedSaga),
+  takeLatest<any>(GET_MAP, updateMapSaga),
+  takeLatest<any>(INITIAL_GET_MAP, gameStartedSaga),
 ]);

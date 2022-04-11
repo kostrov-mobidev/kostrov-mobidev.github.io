@@ -1,6 +1,9 @@
 import { ClickCellPayload } from "../cell/cellActions";
+import { SET_LAST_CLICKED } from "../cell/types";
+import { UPDATE_MAP } from "../field/types";
 import { CellProps } from "../fieldRow/types";
-import { ReturnHandleMapType } from "./types";
+import { RESET_GAME } from "../toolBar/types";
+import { GamePlayActionTypes, GAME_LOST, ReturnHandleMapType } from "./types";
 
 export type InitialState = {
   started: boolean;
@@ -39,21 +42,18 @@ const parseMap = (payload: string) => {
   return handleMap(map);
 };
 
-export default function gamePlayReducer(state = initialState, action: any) {
+export default function gamePlayReducer(
+  state: InitialState = initialState,
+  action: GamePlayActionTypes
+) {
   switch (action.type) {
-    case "GAME_START": {
-      const map = parseMap(action.payload);
-
-      return { ...state, map, started: true };
-    }
-
-    case "UPDATE_MAP": {
+    case UPDATE_MAP: {
       const map = parseMap(action.payload);
 
       return { ...state, map };
     }
 
-    case "GAME_LOST": {
+    case GAME_LOST: {
       const { x, y }: any = state.lastClicked;
       const newMap: ReturnHandleMapType[] = state.map.map(
         (row: ReturnHandleMapType, yIndex) => {
@@ -71,11 +71,11 @@ export default function gamePlayReducer(state = initialState, action: any) {
       return { ...state, map: newMap, lost: true };
     }
 
-    case "RESET_GAME": {
+    case RESET_GAME: {
       return { ...initialState };
     }
 
-    case "SET_LAST_CLICKED": {
+    case SET_LAST_CLICKED: {
       return { ...state, lastClicked: { ...action.payload } };
     }
 

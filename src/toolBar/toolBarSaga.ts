@@ -1,6 +1,7 @@
 import { all, call, put, takeLatest } from "redux-saga/effects";
 
 import { startGame } from "./toolBarService";
+import { NEW_GAME } from "./types";
 
 function* newGameSaga(action: any) {
   try {
@@ -10,4 +11,4 @@ function* newGameSaga(action: any) {
   }
 }
 
-export default all([takeLatest<any>("NEW_GAME", newGameSaga)]);
+export default all([takeLatest<any>(NEW_GAME, newGameSaga)]);
