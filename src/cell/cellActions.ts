@@ -12,4 +12,4 @@ export const setLastClicked = (payload: ClickCellPayload) =>
     payload,
   } as const);
 
-export type ClickCellPayload = { x: number; y: number };
+export type ClickCellPayload = { x: number | null; y: number | null };

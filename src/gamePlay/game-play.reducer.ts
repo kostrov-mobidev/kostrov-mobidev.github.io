@@ -9,14 +9,14 @@ export type InitialState = {
   started: boolean;
   map: ReturnHandleMapType[];
   lost: boolean;
-  lastClicked: ClickCellPayload | null;
+  lastClicked: ClickCellPayload;
 };
 
 const initialState: InitialState = {
   started: false,
   map: [],
   lost: false,
-  lastClicked: null,
+  lastClicked: { x: null, y: null },
 };
 
 const handleMap = (map: CellProps[][]): ReturnHandleMapType[] =>
@@ -58,7 +58,7 @@ export default function gamePlayReducer(
     }
 
     case GAME_LOST: {
-      const { x, y }: any = state.lastClicked;
+      const { x, y }: ClickCellPayload = state.lastClicked;
       const newMap: ReturnHandleMapType[] = state.map.map(
         (row: ReturnHandleMapType, yIndex) => {
           return {

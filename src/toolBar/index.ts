@@ -1,6 +1,7 @@
 import { withStyles } from "@material-ui/core";
 import { connect } from "react-redux";
 import { selectLostState, selectStarted } from "../redux/selectors/gamePlay";
+import { AppState } from "../redux/store";
 import styles from "./styles";
 
 import ToolBar from "./ToolBar";
@@ -11,7 +12,7 @@ const mapDispatchToProps = {
   resetGame,
 };
 
-const mapStateToProps = (state: any) => ({
+const mapStateToProps = (state: AppState) => ({
   started: selectStarted(state),
   lost: selectLostState(state),
 });

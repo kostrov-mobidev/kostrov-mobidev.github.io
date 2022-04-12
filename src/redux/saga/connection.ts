@@ -1,18 +1,17 @@
-import { take, put, call } from "redux-saga/effects";
 import { eventChannel } from "redux-saga";
+import { take, put, call } from "redux-saga/effects";
+import ReconnectingWebSocket, { ErrorEvent } from "reconnecting-websocket";
 
 import createWebSocketConnection from "../../socket";
 import { handleGameAction } from "../actions/basics/basics";
 
-const createConnection = (socket: any): any =>
+const createConnection = (socket: ReconnectingWebSocket) =>
   eventChannel((emit) => {
-    socket.onopen = function (e: any) {};
-
-    const onMessage = (event: any) => {
+    const onMessage = (event: MessageEvent<any>) => {
       emit(event.data);
     };
     socket.onmessage = onMessage;
-    socket.onerror = function (error: any) {
+    socket.onerror = function (error: ErrorEvent) {
       console.log(`[error] ${error}`);
     };
 
@@ -20,12 +19,12 @@ const createConnection = (socket: any): any =>
   });
 
 function* watchOnActions(): any {
-  const socket: any = yield call(createWebSocketConnection);
-  const socketChannel: any = yield call(createConnection, socket);
+  const socket = yield call(createWebSocketConnection);
+  const socketChannel = yield call(createConnection, socket);
 
   while (true) {
     try {
-      const payload: any = yield take(socketChannel);
+      const payload = yield take(socketChannel);
       yield put(handleGameAction(payload));
     } catch (err) {
       console.error("socket error:", err);
