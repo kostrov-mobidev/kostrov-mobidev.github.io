@@ -1,6 +1,6 @@
 import { createStyles } from "@material-ui/core";
 
-export default () =>
+const styles = () =>
   createStyles({
     appCont: {
       backgroundColor: "#282c34",
@@ -12,3 +12,5 @@ export default () =>
       padding: 20,
     },
   });
+
+export default styles;

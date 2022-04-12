@@ -1,6 +1,6 @@
 import { Theme, createStyles } from "@material-ui/core";
 
-export default (theme: Theme) =>
+const styles = (theme: Theme) =>
   createStyles({
     cell: {
       height: 20,
@@ -16,3 +16,5 @@ export default (theme: Theme) =>
       color: "red",
     },
   });
+
+export default styles;

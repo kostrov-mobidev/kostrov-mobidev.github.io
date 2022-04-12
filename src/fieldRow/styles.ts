@@ -1,8 +1,10 @@
 import { createStyles } from "@material-ui/core";
 
-export default () =>
+const styles = () =>
   createStyles({
     row: {
       display: "flex",
     },
   });
+
+export default styles;
