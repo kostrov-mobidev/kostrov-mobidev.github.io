@@ -1,8 +1,8 @@
-import { GAME_START, GET_MAP, INITIAL_GET_MAP, UPDATE_MAP } from "./types";
+import { GAME_STARTED, GET_MAP, INITIAL_GET_MAP, UPDATE_MAP } from "./types";
 
 export const gameStarted = () => {
   return {
-    type: GAME_START,
+    type: GAME_STARTED,
   } as const;
 };
 
