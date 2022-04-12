@@ -27,6 +27,9 @@ const styles = () =>
       justifyContent: "center",
       fontSize: 24,
     },
+    levelLabel: {
+      marginRight: "15px",
+    },
   });
 
 export default styles;

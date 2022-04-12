@@ -19,7 +19,7 @@ const ToolBar = ({ startGame, classes, resetGame, started, lost }: any) => {
     <AppBar position="static" className={classes.appBar}>
       <Toolbar className={classes.buttonCont}>
         <Typography>
-          <span>Select Level</span>
+          <span className={classes.levelLabel}>Select Level</span>
           <LevelSelect
             isStarted={started}
             handleLevelChange={handleLevelChange}
@@ -36,7 +36,7 @@ const ToolBar = ({ startGame, classes, resetGame, started, lost }: any) => {
             handleClick={handleReset}
             content={"Reset"}
             classname={"reset"}
-            disabled={!lost}
+            disabled={!started}
           />
         </ButtonGroup>
       </Toolbar>
