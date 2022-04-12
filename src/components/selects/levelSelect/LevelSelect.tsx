@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { MenuItem, Select } from "@material-ui/core";
 
 const LevelSelect = ({ isStarted, handleLevelChange, classes }: any) => {
