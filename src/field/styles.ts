@@ -1,7 +1,6 @@
 import { createStyles } from "@material-ui/core";
 
-// eslint-disable-next-line import/no-anonymous-default-export
-export default () =>
+const styles = () =>
   createStyles({
     cont: {
       display: "flex",
@@ -10,3 +9,5 @@ export default () =>
       marginTop: 40,
     },
   });
+
+export default styles;

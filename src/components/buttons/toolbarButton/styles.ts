@@ -1,7 +1,6 @@
 import { createStyles } from "@material-ui/core";
 
-// eslint-disable-next-line import/no-anonymous-default-export
-export default () =>
+const styles = () =>
   createStyles({
     btn: {
       width: 50,
@@ -13,3 +12,5 @@ export default () =>
       backgroundColor: "#CD5C5C",
     },
   });
+
+export default styles;

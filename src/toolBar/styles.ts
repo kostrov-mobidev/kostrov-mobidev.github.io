@@ -1,7 +1,6 @@
 import { createStyles } from "@material-ui/core";
 
-// eslint-disable-next-line import/no-anonymous-default-export
-export default () =>
+const styles = () =>
   createStyles({
     appBar: {
       display: "flex",
@@ -29,3 +28,5 @@ export default () =>
       fontSize: 24,
     },
   });
+
+export default styles;
