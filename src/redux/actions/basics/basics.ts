@@ -9,7 +9,7 @@ const isMap = (payload: string) => payload.startsWith("map");
 const isOpen = (payload: string) => payload === OPEN_OK_MSG;
 const isLost = (payload: string) => payload === LOSE_MSG;
 
-export const handleGameAction = (payload: any) => {
+export const handleGameAction = (payload: string) => {
   if (isNewGame(payload)) {
     return initialGetMap(payload);
   }

@@ -1,13 +1,23 @@
-import { Button } from "@material-ui/core";
-import React from "react";
+import React, { MouseEvent } from "react";
+import { Button, WithStyles } from "@material-ui/core";
 
-const ToolBarButton = ({
+import styles from "./styles";
+import { ButtonClasses } from "./types";
+
+type Props = {
+  disabled: boolean;
+  content: string;
+  classname: ButtonClasses;
+  handleClick: (event: MouseEvent<HTMLButtonElement>) => void;
+} & WithStyles<typeof styles>;
+
+const ToolBarButton: React.FC<Props> = ({
   handleClick,
   content,
   classname,
   disabled,
   classes,
-}: any) => {
+}) => {
   return (
     <Button
       disabled={disabled}

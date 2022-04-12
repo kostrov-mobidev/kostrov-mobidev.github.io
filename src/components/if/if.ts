@@ -1,4 +1,6 @@
-const If = ({ condition, children }: any) => {
+type Props = { condition: boolean; children: any };
+
+const If = ({ condition, children }: Props) => {
   if (condition) return children;
   return null;
 };

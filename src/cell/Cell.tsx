@@ -1,5 +1,5 @@
 import { WithStyles } from "@material-ui/core";
-import React, { useState } from "react";
+import React, { MouseEvent, useState } from "react";
 import { ClickCellPayload } from "./cellActions";
 import styles from "./styles";
 
@@ -22,12 +22,12 @@ const Cell: React.FC<Props> = ({
   setLastClicked,
 }) => {
   const [cleared, setCleared] = useState(false);
-  const handleClick = (e: any) => {
+  const handleClick = (e: MouseEvent<HTMLButtonElement>) => {
     if (cell || lost || cleared) return;
     setLastClicked({ x: xCoordinate, y: yCoordinate });
     clickCell({ x: xCoordinate, y: yCoordinate });
   };
-  const handleClear = (e: any) => {
+  const handleClear = (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     setCleared(!cleared);
   };

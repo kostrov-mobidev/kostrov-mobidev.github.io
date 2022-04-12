@@ -1,9 +1,31 @@
-import { AppBar, Toolbar, ButtonGroup, Typography } from "@material-ui/core";
+import {
+  AppBar,
+  Toolbar,
+  ButtonGroup,
+  Typography,
+  WithStyles,
+} from "@material-ui/core";
 import React, { useState } from "react";
 
+import styles from "./styles";
 import { LevelSelect, ToolbarButton, If } from "../components";
+import { SelectChangeEvent } from "@mui/material";
+import { levelSelectOptions } from "./constants";
 
-const ToolBar = ({ startGame, classes, resetGame, started, lost }: any) => {
+type Props = {
+  startGame: (level: number) => void;
+  resetGame: () => void;
+  started: boolean;
+  lost: boolean;
+} & WithStyles<typeof styles>;
+
+const ToolBar: React.FC<Props> = ({
+  startGame,
+  classes,
+  resetGame,
+  started,
+  lost,
+}) => {
   const [level, setLevel] = useState(1);
   const handleStart = () => {
     startGame(level);
@@ -11,8 +33,8 @@ const ToolBar = ({ startGame, classes, resetGame, started, lost }: any) => {
   const handleReset = () => {
     resetGame();
   };
-  const handleLevelChange = (event: any) => {
-    setLevel(event.target.value);
+  const handleLevelChange = (event: SelectChangeEvent<number>) => {
+    setLevel(+event.target.value);
   };
 
   return (
@@ -22,6 +44,7 @@ const ToolBar = ({ startGame, classes, resetGame, started, lost }: any) => {
           <span className={classes.levelLabel}>Select Level</span>
           <LevelSelect
             isStarted={started}
+            selectOptions={levelSelectOptions}
             handleLevelChange={handleLevelChange}
           />
         </Typography>
