@@ -3,12 +3,7 @@ import { createStyles } from "@material-ui/core";
 const styles = () =>
   createStyles({
     levelSelect: {
-      backgroundColor: "#A9A9A9",
-      width: 50,
-      fontSize: 18,
-      paddingLeft: 15,
-      color: "aliceblue",
-      borderRadius: "15%",
+      height: 30,
     },
   });
 
