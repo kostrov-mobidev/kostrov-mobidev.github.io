@@ -1,6 +1,8 @@
+import ReconnectingWebSocket from "reconnecting-websocket";
+
 import { SOCKET_API } from "./constants";
 
-export const socket = new WebSocket(SOCKET_API);
+export const socket = new ReconnectingWebSocket(SOCKET_API);
 
 const connectSocket = () => socket;
 
