@@ -1,6 +1,6 @@
 import { ClickCellPayload } from "../cell/cellActions";
 import { SET_LAST_CLICKED } from "../cell/types";
-import { UPDATE_MAP } from "../field/types";
+import { GAME_STARTED, UPDATE_MAP } from "../field/types";
 import { CellProps } from "../fieldRow/types";
 import { RESET_GAME } from "../toolBar/types";
 import { GamePlayActionTypes, GAME_LOST, ReturnHandleMapType } from "./types";
@@ -47,6 +47,10 @@ export default function gamePlayReducer(
   action: GamePlayActionTypes
 ) {
   switch (action.type) {
+    case GAME_STARTED: {
+      return { ...state, started: true };
+    }
+
     case UPDATE_MAP: {
       const map = parseMap(action.payload);
 

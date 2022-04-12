@@ -3,14 +3,7 @@ import React, { useState } from "react";
 
 import { LevelSelect, ToolbarButton, If } from "../components";
 
-const ToolBar = ({
-  startGame,
-  state,
-  classes,
-  resetGame,
-  started,
-  lost,
-}: any) => {
+const ToolBar = ({ startGame, classes, resetGame, started, lost }: any) => {
   const [level, setLevel] = useState(1);
   const handleStart = () => {
     startGame(level);
@@ -28,7 +21,7 @@ const ToolBar = ({
         <Typography>
           <span>Select Level</span>
           <LevelSelect
-            isStarted={state.gamePlayReducer.started}
+            isStarted={started}
             handleLevelChange={handleLevelChange}
           />
         </Typography>
@@ -47,7 +40,7 @@ const ToolBar = ({
           />
         </ButtonGroup>
       </Toolbar>
-      <If condition={state.gamePlayReducer.lost}>
+      <If condition={lost}>
         <div className={classes.lostMsg}>You Lost!</div>
       </If>
     </AppBar>
