@@ -7,9 +7,17 @@ const styles = () =>
     },
     start: {
       backgroundColor: "#ADFF2F",
+      "&:hover": {
+        border: "none",
+        backgroundColor: "#ADFF2F",
+      },
     },
     reset: {
       backgroundColor: "#CD5C5C",
+      "&:hover": {
+        border: "none",
+        backgroundColor: "#CD5C5C",
+      },
     },
   });
 
